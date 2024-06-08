@@ -61,5 +61,3 @@ class MyModel(BaseModel):
 async def new(topper: Path, q:MyModel=None):
     return {'topper': topper, "top": q.name if q else None}
 
-# this is to check the history of pr
-# this is to check the history of pr2
