@@ -23,7 +23,7 @@ async def add_item(item:Item):
     return {'message': f'{item.name} count of {item.count} at price of {item.price}'}
 
 
-
+# fastapi made for asynchronous calls
 
 
 @app.get('/')
