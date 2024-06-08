@@ -23,7 +23,7 @@ async def add_item(item:Item):
     return {'message': f'{item.name} count of {item.count} at price of {item.price}'}
 
 
-
+# fastapi made for asynchronous calls
 
 
 @app.get('/')
@@ -61,3 +61,5 @@ class MyModel(BaseModel):
 async def new(topper: Path, q:MyModel=None):
     return {'topper': topper, "top": q.name if q else None}
 
+# this is to check the history of pr
+# this is to check the history of pr2
