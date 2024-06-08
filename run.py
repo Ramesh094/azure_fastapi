@@ -61,3 +61,4 @@ class MyModel(BaseModel):
 async def new(topper: Path, q:MyModel=None):
     return {'topper': topper, "top": q.name if q else None}
 
+# Finally did something
