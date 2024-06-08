@@ -1,0 +1,92 @@
+Command to start fastapi application:
+cmd:    uvicorn main:app --reload   # you have to navigate to the parent folder in the terminal
+
+Here main is the python module name and app is the instance or object of FastAPI class.
+--reload is to make the server restart after code changes, Only use for development.
+Ex: fast_api_project
+        |-->main.py
+            |--> app = FastAPI()
+
+Let you have the code of your applicaition in main.py which is having parent folder of fastapi_project. Let's assume you have code with one endpoint.
+
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get('/)
+async def root()
+    return {"message": "Hello World"}
+
+If you have your application in some other folder i.e first_app then the command is:
+cmd:    uvicorn fisst_app.main:app --reload
+
+    Folder structure looks like ths:
+        fast_api_project
+            |-->first_app
+                |-->main.py
+                    |--> app = FastAPI()
+
+Path parameters:
+----------------
+A 'path' is also commonly called an endpoint or a route.
+While building an API, the path is the main way to separate concerns and resources.
+
+####-------------------####
+In fastapi you could also define it as a normal functio instead of async def:
+
+from fastapi import FastAPI
+
+app = FastAPI()             # Create an app instance
+
+@app.get("/")               # path operator decorator
+def root():                 # path operation function
+    return {"message": "Hello World"}
+
+Run the development server in terminal : uvicorn main:app --reload
+
+path operaations are evaluated in defining order
+* if you have path operation same for different purposes like to get the current user name and respected user id and those two operator functions having tyep hinting of str, then It will follows
+the order which operator funciton is defined first and executes that path operator function.
+####-------------------####
+
+path parameters with type hint will have auto data conversion and data validation:
+----------------------------------------------------------------------------------
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
+
+In your application while definig operator function if you mention type of parameter, it should expects the same type of value only.
+Because it has auto support of data cob=nversion i.e request parsing and data validation i.e input data validation according to the type hint.
+
+Documentation:
+--------------
+Fastapi has inbuilt support for api documentation which is a rich interface
+of your all api's where you can test each api response making sample requests.
+You can navigate to the documentation by hitting the combination of base_url and docs
+like  http://127.0.0.1:8000/docs
+other alternative documnetation is  http://127.0.0.1:8000/redoc
+
+
+paramerters with predefined values:
+-----------------------------------
+from enum import Enum
+from fastapi import FastAPI
+
+class Toss(Enum):
+    one = "Head"
+    two = "Tail"
+
+async def root():
+    return 
+
+
+
+
+
+
